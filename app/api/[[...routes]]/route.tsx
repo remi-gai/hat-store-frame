@@ -4,35 +4,35 @@ import { Button, Frog, TextInput, parseEther } from "frog";
 import { handle } from "frog/next";
 import { createWalletClient, http, createPublicClient } from "viem";
 import { privateKeyToAccount } from "viem/accounts";
-// import { baseSepolia } from "viem/chains";
-import { defineChain } from "viem";
+import { baseSepolia } from "viem/chains";
+// import { defineChain } from "viem";
 import { PinataFDK } from "pinata-fdk";
 import abi from "./abi.json";
 
-const incoTestnet = defineChain({
-  id: 9090,
-  name: 'Inco',
-  nativeCurrency: {
-    decimals: 18,
-    name: 'INCO',
-    symbol: 'INCO',
-  },
-  rpcUrls: {
-    default: {
-      http: ['https://testnet.inco.org'],
-      webSocket: ['wss://testnet.inco.org'],
-    },
-  },
-  blockExplorers: {
-    default: { name: 'Explorer', url: 'https://explorer.testnet.inco.org' },
-  },
-  contracts: {
-    multicall3: {
-      address: '0xcA11bde05977b3631167028862bE2a173976CA11',
-      blockCreated: 5882,
-    },
-  },
-})
+// const incoTestnet = defineChain({
+//   id: 9090,
+//   name: 'Inco',
+//   nativeCurrency: {
+//     decimals: 18,
+//     name: 'INCO',
+//     symbol: 'INCO',
+//   },
+//   rpcUrls: {
+//     default: {
+//       http: ['https://testnet.inco.org'],
+//       webSocket: ['wss://testnet.inco.org'],
+//     },
+//   },
+//   blockExplorers: {
+//     default: { name: 'Explorer', url: 'https://explorer.testnet.inco.org' },
+//   },
+//   contracts: {
+//     multicall3: {
+//       address: '0xcA11bde05977b3631167028862bE2a173976CA11',
+//       blockCreated: 5882,
+//     },
+//   },
+// })
 
 const fdk = new PinataFDK({
   pinata_jwt: process.env.PINATA_JWT || "",
@@ -46,18 +46,20 @@ const account = privateKeyToAccount((process.env.PRIVATE_KEY as `0x`) || "");
 console.log("accountX", account);
 
 const publicClient = createPublicClient({
-  chain: incoTestnet,
-  // transport: http(process.env.ALCHEMY_URL),
-  transport: http(),
+  // chain: incoTestnet,
+  chain: baseSepolia,
+  transport: http(process.env.ALCHEMY_URL),
+  // transport: http(),
 });
 
 console.log("publicClient", publicClient);
 
 const walletClient = createWalletClient({
   account,
-  chain: incoTestnet,
-  // transport: http(process.env.ALCHEMY_URL),
-  transport: http(),
+  // chain: incoTestnet,
+  chain: baseSepolia,
+  transport: http(process.env.ALCHEMY_URL),
+  // transport: http(),
 });
 
 async function checkBalance(address: any) {
