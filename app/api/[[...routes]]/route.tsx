@@ -43,15 +43,21 @@ const CONTRACT = process.env.CONTRACT_ADDRESS as `0x` || ""
 
 const account = privateKeyToAccount((process.env.PRIVATE_KEY as `0x`) || "");
 
+console.log("accountX", account);
+
 const publicClient = createPublicClient({
   chain: incoTestnet,
-  transport: http(process.env.ALCHEMY_URL),
+  // transport: http(process.env.ALCHEMY_URL),
+  transport: http(),
 });
+
+console.log("publicClient", publicClient);
 
 const walletClient = createWalletClient({
   account,
   chain: incoTestnet,
-  transport: http(process.env.ALCHEMY_URL),
+  // transport: http(process.env.ALCHEMY_URL),
+  transport: http(),
 });
 
 async function checkBalance(address: any) {
@@ -163,6 +169,7 @@ app.frame("/coupon", async (c) => {
   const supply = await remainingSupply();
   const address = c.inputText;
   const balance = await checkBalance(address);
+  console.log("balance", balance);
 
   if (
     typeof balance === "number" &&
