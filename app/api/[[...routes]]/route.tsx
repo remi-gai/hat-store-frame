@@ -79,7 +79,7 @@ app.frame("/", async (c) => {
   if (typeof balance === "number" && balance === 0) {
     return c.res({
       image:
-        "https://dweb.mypinata.cloud/ipfs/QmeeXny8775RQBZDhSppkRN15zn5nFjQUKeKAvYvdNx986",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Linecons_small-cloud.svg/1024px-Linecons_small-cloud.svg.png?20160307130929",
       imageAspectRatio: "1:1",
       intents: [
         <Button.Link href="https://warpcast.com/~/channel/pinata">
@@ -92,7 +92,7 @@ app.frame("/", async (c) => {
     return c.res({
       action: "/finish",
       image:
-        "https://dweb.mypinata.cloud/ipfs/QmeC7uQZqkjmc1T6sufzbJWQpoeoYjQPxCXKUSoDrXfQFy",
+        "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f7/Linecons_small-cloud.svg/1024px-Linecons_small-cloud.svg.png?20160307130929",
       imageAspectRatio: "1:1",
       intents: [
         <Button.Transaction target="/buy/0.0005">
