@@ -9,7 +9,7 @@ import { defineChain } from "viem";
 import { PinataFDK } from "pinata-fdk";
 import abi from "./abi.json";
 
-export const incoTestnet = defineChain({
+const incoTestnet = defineChain({
   id: 9090,
   name: 'Inco',
   nativeCurrency: {
